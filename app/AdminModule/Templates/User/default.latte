@@ -1,0 +1,32 @@
+{* This is the welcome page, you can delete it *}
+
+{block content}
+<h1 class="mt-4">Uživatelé: {$userCount}</h1>
+<div class="table-responsive">
+    <table aria-describedby="Výpis uživatelů" class="table table-hover text-center">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">Jméno</th>
+            <th scope="col">Příjmení</th>
+            <th scope="col">Telefon</th>
+            <th scope="col">Vytvořen</th>
+            <th scope="col">Administrátor</th>
+        </tr>
+        </thead>
+        <tbody>
+        {foreach $users as $userd}
+            <tr>
+                <th scope="row">{$userd->id}</th>
+                <td>{$userd->email}</td>
+                <td>{$userd->firstname}</td>
+                <td>{$userd->lastname}/td>
+                <td>{$userd->phone}</td>
+                <td>{$userd->created}</td>
+                <td>{$userd->admin==0 ? 'Ne' : 'Ano'}</td>
+            </tr>
+        {/foreach}
+        </tbody>
+    </table>
+</div>

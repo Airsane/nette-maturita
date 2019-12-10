@@ -1,0 +1,22 @@
+{* This is the welcome page, you can delete it *}
+
+{block content}
+<h1 class="mt-4">Ubytování: {$houseCount}</h1>
+<div class="table-responsive">
+    <table aria-describedby="Výpis uživatelů" class="table table-hover text-center">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Název</th>
+        </tr>
+        </thead>
+        <tbody>
+        {foreach $houses as $house}
+            <tr>
+                <th scope="row">{$house->id}</th>
+                <td>{$house->name}</td>
+            </tr>
+        {/foreach}
+        </tbody>
+    </table>
+</div>

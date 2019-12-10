@@ -1,0 +1,41 @@
+.search-bar form input {
+    background-color: #e3e3e4 !important;
+}
+
+.search-bar form {
+    width: 80%;
+    margin: auto;
+}
+
+.dropdown-menu-right {
+    right: -16px !important;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: transparent !important;
+}
+
+.navbar-collapse div a {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-collapse div a:hover {
+    color: #fff;
+}
+
+@media only screen and (min-width: 1024px) {
+    .search-bar form {
+        width: 700px;
+        background-color: rgba(62, 63, 58, 0.6);
+    }
+
+    .search-bar {
+        background-image: url('../img/13.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
