@@ -12,7 +12,7 @@
         </thead>
         <tbody>
         {foreach $houses as $house}
-            <tr>
+            <tr n:href="House:show $house->id">
                 <th scope="row">{$house->id}</th>
                 <td>{$house->name}</td>
             </tr>
@@ -20,3 +20,16 @@
         </tbody>
     </table>
 </div>
+
+{block script}
+    <script>
+        $('table tr[href]').click(function () {
+            window.location = $(this).attr('href')
+            return false;
+        });
+    </script>
+    <style>    table tr[href] {
+            cursor: pointer;
+        }
+    </style>
+{/block}

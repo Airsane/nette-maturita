@@ -3,6 +3,7 @@
 
 namespace App\Presenters;
 
+use App\Model\HouseManager;
 use App\Model\MyAuthenticator;
 use Nette;
 use Nette\Application\UI\Form;
@@ -14,11 +15,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
     public $database;
     public $autentificator;
+    public $houseManager;
 
     public function __construct(Nette\Database\Context $database)
     {
         $this->database = $database;
         $this->autentificator = new MyAuthenticator($database);
+        $this->houseManager = new HouseManager($database);
     }
 
     public function loginFormSucceeded(Form $form, \stdClass $values)

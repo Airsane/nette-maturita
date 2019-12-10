@@ -27,6 +27,78 @@ final class HousePresenter extends Nette\Application\UI\Presenter
         $this->template->houses = $this->houseManager->getHouses(0, 10);
     }
 
+    public function renderShow(int $id): void
+    {
+        $house = $this->database->table('house')->get($id);
+        if (!$house) {
+            $this->error("Ubytování nenalezeno!");
+        }
+        $this->template->house = $house;
+        $this->template->photos = $this->houseManager->getHousePhotos($id);
+        $this['editForm']->setDefaults($house->toArray());
+    }
+
+    public function handleDelete(int $imgId): void
+    {
+        $data = $this->database->table('image')->get($imgId);
+        $path = 'res/img/house/' . $data->name;
+        unlink($path);
+        $this->database->table('image')->get($imgId)->delete();
+    }
+
+    public function handleSetDefault(int $imgId)
+    {
+        $this->database->query('UPDATE image SET isDefault = CASE WHEN id = ? THEN 1 ELSE 0 end WHERE house_id = ?', $imgId, $this->getParameter('id'));
+    }
+
+    public function createComponentImageForm()
+    {
+        $form = new Nette\Application\UI\Form;
+        $form->setRenderer(new BootstrapVerticalRenderer);
+        $form->addMultiUpload('photos');
+        $form->addSubmit('send', 'Přidat obrázky');
+        $form->onSuccess[] = [$this, 'imageFormSucceeded'];
+        return $form;
+    }
+
+    public function imageFormSucceeded(Form $form, \stdClass $values)
+    {
+        $this->database->beginTransaction();
+        try {
+            $this->savePhotos($values->photos, $this->getParameter('id'));
+            $this->database->commit();
+        } catch (PDOException $e) {
+            $this->database->rollBack();
+            $this->flashMessage('Chyba!');
+        }
+    }
+
+    public function createComponentEditForm()
+    {
+        $form = new Nette\Application\UI\Form;
+        $form->setRenderer(new BootstrapVerticalRenderer);
+        $form->addText('name', 'Název:')->setRequired('Prosím zadejte název');
+        $form->addText('price', 'Cena:')->setRequired('Prosím zadejte cenu');
+        $form->addText('beds', 'Počet osob:')->setRequired('Prosím zadejte počet osob');
+        $form->addText('city', 'Město:')->setRequired('Prosím zadejte město');
+        $form->addText('street', 'Ulice:')->setRequired('Prosím zadejte ulici');
+        $form->addText('postcode', 'PSČ:')->setRequired('Prosím zadejte psč');
+        $form->addTextArea('description', 'Popis:')->setHtmlId('summernote');
+        $form->addSubmit('send', 'Upravit ubytování');
+        $form->onSuccess[] = [$this, 'editFormSucceeded'];
+        return $form;
+    }
+
+    public function editFormSucceeded(Form $form, array $values)
+    {
+        $houseId = $this->getParameter('id');
+        if ($houseId) {
+            $house = $this->database->table('house')->get($houseId);
+            $house->update($values);
+        }
+        $this->redirect('default');
+    }
+
     public function addFormSucceeded(Form $form, \stdClass $values)
     {
         $this->database->beginTransaction();
@@ -38,6 +110,7 @@ final class HousePresenter extends Nette\Application\UI\Presenter
             $this->database->rollBack();
             $this->flashMessage('Chyba!');
         }
+        $this->redirect('default');
     }
 
     public function savePhotos($images, $idd)

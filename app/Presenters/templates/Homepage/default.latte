@@ -10,133 +10,24 @@
     </form>
 </div>
 
+
 <div class="container-fluid p-4">
     <div class="row">
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="./res/img/obr1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">CHALUPA U TOMA</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> Lipová-lázně - Dolní
-                        Lipová, Jeseníky</h6>
+        {foreach $houses as $house}
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="{$basePath}/res/img/house/{$house->image}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{$house->name}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> {$house->street}
+                            - {$house->city}</h6>
 
-                    <p class="card-text">Zrekonstruované přízemí chalupy U Toma, v klidné části středu obce Lipová -
-                        lázně...</p>
-                    <a href="#" class="btn btn-primary">Více informací</a>
+                        <div class="card-text"
+                             style="height: 131px; overflow: hidden; text-overflow: ellipsis;">{$house->description|noescape}</div>
+                        <a n:href="House:show $house->id" class="btn btn-primary">Více informací</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="./res/img/obr1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">CHALUPA U TOMA</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> Lipová-lázně - Dolní
-                        Lipová, Jeseníky</h6>
-
-                    <p class="card-text">Zrekonstruované přízemí chalupy U Toma, v klidné části středu obce Lipová -
-                        lázně...</p>
-                    <a href="#" class="btn btn-primary">Více informací</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="./res/img/obr1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">CHALUPA U TOMA</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> Lipová-lázně - Dolní
-                        Lipová, Jeseníky</h6>
-
-                    <p class="card-text">Zrekonstruované přízemí chalupy U Toma, v klidné části středu obce Lipová -
-                        lázně...</p>
-                    <a href="#" class="btn btn-primary">Více informací</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="./res/img/obr1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">CHALUPA U TOMA</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> Lipová-lázně - Dolní
-                        Lipová, Jeseníky</h6>
-
-                    <p class="card-text">Zrekonstruované přízemí chalupy U Toma, v klidné části středu obce Lipová -
-                        lázně...</p>
-                    <a href="#" class="btn btn-primary">Více informací</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="./res/img/obr1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">CHALUPA U TOMA</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> Lipová-lázně - Dolní
-                        Lipová, Jeseníky</h6>
-
-                    <p class="card-text">Zrekonstruované přízemí chalupy U Toma, v klidné části středu obce Lipová -
-                        lázně...</p>
-                    <a href="#" class="btn btn-primary">Více informací</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="./res/img/obr1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">CHALUPA U TOMA</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> Lipová-lázně - Dolní
-                        Lipová, Jeseníky</h6>
-
-                    <p class="card-text">Zrekonstruované přízemí chalupy U Toma, v klidné části středu obce Lipová -
-                        lázně...</p>
-                    <a href="#" class="btn btn-primary">Více informací</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="./res/img/obr1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">CHALUPA U TOMA</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> Lipová-lázně - Dolní
-                        Lipová, Jeseníky</h6>
-
-                    <p class="card-text">Zrekonstruované přízemí chalupy U Toma, v klidné části středu obce Lipová -
-                        lázně...</p>
-                    <a href="#" class="btn btn-primary">Více informací</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="./res/img/obr1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">CHALUPA U TOMA</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> Lipová-lázně - Dolní
-                        Lipová, Jeseníky</h6>
-
-                    <p class="card-text">Zrekonstruované přízemí chalupy U Toma, v klidné části středu obce Lipová -
-                        lázně...</p>
-                    <a href="#" class="btn btn-primary">Více informací</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <img src="./res/img/obr1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">CHALUPA U TOMA</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> Lipová-lázně - Dolní
-                        Lipová, Jeseníky</h6>
-
-                    <p class="card-text">Zrekonstruované přízemí chalupy U Toma, v klidné části středu obce Lipová -
-                        lázně...</p>
-                    <a href="#" class="btn btn-primary">Více informací</a>
-                    </em>
-                </div>
-            </div>
-        </div>
+        {/foreach}
     </div>
+</div>

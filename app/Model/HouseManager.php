@@ -22,9 +22,20 @@ class HouseManager
         return $this->database->fetch('SELECT * FROM house where id = ?', $id);
     }
 
+    public function getHousePhotos($id)
+    {
+        return $this->database->fetchAll('SELECT * FROM image where house_id = ?', $id);
+    }
+
+    public function getHousePhoto($id)
+    {
+        return $this->database->fetch('SELECT * FROM image where house_id = ? and isDefault = 1', $id);
+    }
+
     public function getHouses($offset, $limit)
     {
-        return $this->database->fetchAll('SELECT * FROM house LIMIT ?,?', $offset, $limit);
+        return $this->database->table('house')->select('house.*')->select(':image.name AS "image"')->where(':image.isDefault=1');
+
     }
 
     public function getHouseCount()
