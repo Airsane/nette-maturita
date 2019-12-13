@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="244cb131-68c8-4f13-9fe9-40029479cfdf" name="Default Changelist" comment="First Commit">
-      <change afterPath="$PROJECT_DIR$/app/AdminModule/Templates/House/show.latte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Presenters/HousePresenter.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Presenters/templates/House/show.latte" afterDir="false" />
+    <list default="true" id="244cb131-68c8-4f13-9fe9-40029479cfdf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/AdminModule/Presenters/HousePresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Presenters/HousePresenter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/AdminModule/Templates/House/add.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Templates/House/add.latte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/AdminModule/Templates/House/default.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Templates/House/default.latte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/AdminModule/Templates/User/default.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Templates/User/default.latte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/AdminModule/Templates/nav.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Templates/nav.latte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/HouseManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/HouseManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Presenters/BasePresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/BasePresenter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Presenters/HomepagePresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/HomepagePresenter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Presenters/templates/Homepage/default.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/Homepage/default.latte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Presenters/templates/nav.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/nav.latte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/res/img/house/5defa33694471.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Presenters/templates/House/show.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/House/show.latte" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,19 +44,23 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="kratos: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="kratos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="kratos: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="forgot_pass: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/AdminModule/Presenters/HousePresenter.php">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Presenters/templates/House/show.latte">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="29" column="31" selection-start-line="29" selection-start-column="31" selection-end-line="38" selection-end-column="5" />
-              <folding>
-                <element signature="e#72#99#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="139">
+              <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -77,26 +68,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Presenters/templates/Homepage/default.latte">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
+            <state relative-caret-position="330">
+              <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="22" selection-end-column="49" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Presenters/templates/House/show.latte">
+        <entry file="file://$PROJECT_DIR$/app/Presenters/HousePresenter.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+            <state relative-caret-position="408">
+              <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Presenters/HousePresenter.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Model/HouseManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="50" selection-start-line="17" selection-end-line="18" />
+            <state relative-caret-position="578">
+              <caret line="34" column="46" lean-forward="true" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -135,9 +126,10 @@
         <option value="$PROJECT_DIR$/app/Presenters/HomepagePresenter.php" />
         <option value="$PROJECT_DIR$/app/Model/HouseManager.php" />
         <option value="$PROJECT_DIR$/app/Presenters/templates/House/default.latte" />
-        <option value="$PROJECT_DIR$/app/Presenters/templates/House/show.latte" />
         <option value="$PROJECT_DIR$/app/Presenters/templates/Homepage/default.latte" />
         <option value="$PROJECT_DIR$/app/Presenters/HousePresenter.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/app/Presenters/templates/House/show.latte" />
       </list>
     </option>
   </component>
@@ -169,7 +161,7 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="391" />
+    <option name="x" value="390" />
     <option name="y" value="65" />
     <option name="width" value="980" />
     <option name="height" value="1040" />
@@ -182,6 +174,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -193,25 +186,6 @@
               <item name="nette-maturita" type="b2602c69:ProjectViewProjectNode" />
               <item name="nette-maturita" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nette-maturita" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nette-maturita" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="AdminModule" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nette-maturita" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nette-maturita" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="AdminModule" type="462c0819:PsiDirectoryNode" />
-              <item name="Presenters" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nette-maturita" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nette-maturita" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="nette-maturita" type="b2602c69:ProjectViewProjectNode" />
@@ -248,17 +222,10 @@
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="House" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="nette-maturita" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nette-maturita" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Router" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -316,6 +283,9 @@
       <workItem from="1575990589797" duration="137000" />
       <workItem from="1575990767758" duration="350000" />
       <workItem from="1575991683636" duration="8556000" />
+      <workItem from="1576053747169" duration="3513000" />
+      <workItem from="1576084547108" duration="135000" />
+      <workItem from="1576140131738" duration="3409000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1575989885999</created>
@@ -342,7 +312,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18412000" />
+    <option name="totallyTimeSpent" value="26076000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -354,10 +324,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26599148" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27919462" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Database Console" order="0" weight="0.32941177" />
@@ -370,7 +340,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="8" sideWeight="0.4986577" weight="0.32941177" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.32941177" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49731544" weight="0.32936078" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49731544" weight="0.32794118" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5026846" side_tool="true" weight="0.32941177" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -416,15 +386,6 @@
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../nette-pokedex/app/config/config.neon">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="15" column="23" selection-start-line="15" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Presenters/templates/Sign/in.latte" />
-    <entry file="file://$PROJECT_DIR$/app/AdminModule/Presenters/templates/Sign/up.latte" />
     <entry file="file://$PROJECT_DIR$/app/Model/MyAuthenticator.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="355">
@@ -520,7 +481,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/274cb67c-19d1-4bbd-bee3-1fc14ac7aab2/console.sql" />
     <entry file="das://274cb67c-19d1-4bbd-bee3-1fc14ac7aab2/schema/kratos/table/house">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state projectRestartId="e29d74a8-34be-4a81-951b-0c6537613c1d">
@@ -713,44 +673,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/HouseManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="96" selection-start-line="34" selection-start-column="96" selection-end-line="34" selection-end-column="96" />
+    <entry file="file://$PROJECT_DIR$/app/Presenters/templates/House/default.latte" />
+    <entry file="uml://DATABASE/274cb67c-19d1-4bbd-bee3-1fc14ac7aab2.TABLE:kratos.image">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>274cb67c-19d1-4bbd-bee3-1fc14ac7aab2.TABLE:kratos.image</OriginalElement>
+          <nodes>
+            <node x="" y="">274cb67c-19d1-4bbd-bee3-1fc14ac7aab2.TABLE:kratos.status</node>
+            <node x="" y="">274cb67c-19d1-4bbd-bee3-1fc14ac7aab2.TABLE:kratos.user</node>
+            <node x="" y="">274cb67c-19d1-4bbd-bee3-1fc14ac7aab2.TABLE:kratos.reservation</node>
+            <node x="" y="">274cb67c-19d1-4bbd-bee3-1fc14ac7aab2.TABLE:kratos.image</node>
+            <node x="" y="">274cb67c-19d1-4bbd-bee3-1fc14ac7aab2.TABLE:kratos.house</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="247.0" y="228.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Key columns</Category>
+            <Category>Columns</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Presenters/templates/House/default.latte">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/274cb67c-19d1-4bbd-bee3-1fc14ac7aab2/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Presenters/templates/House/show.latte">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Presenters/templates/Homepage/default.latte">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
+        <state relative-caret-position="24">
+          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/AdminModule/Presenters/HousePresenter.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="29" column="31" selection-start-line="29" selection-start-column="31" selection-end-line="38" selection-end-column="5" />
+        <state relative-caret-position="187">
+          <caret line="140" column="37" selection-start-line="140" selection-start-column="32" selection-end-line="140" selection-end-column="37" />
           <folding>
             <element signature="e#72#99#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/HouseManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="46" lean-forward="true" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../nette-mygamelist/app/Presenters/templates/Homepage/default.latte">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Presenters/templates/Homepage/default.latte">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="22" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Presenters/HousePresenter.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="50" selection-start-line="17" selection-end-line="18" />
+        <state relative-caret-position="408">
+          <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Presenters/templates/House/show.latte">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
         </state>
       </provider>
     </entry>
