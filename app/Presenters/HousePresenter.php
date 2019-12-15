@@ -16,5 +16,6 @@ final class HousePresenter extends BasePresenter
         }
         $this->template->house = $house;
         $this->template->photos = $this->houseManager->getHousePhotos($id);
+        $this->template->houses = $this->houseManager->getRandomHouses();
     }
 }

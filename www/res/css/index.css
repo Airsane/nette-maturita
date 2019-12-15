@@ -39,3 +39,11 @@
         align-items: center;
     }
 }
+
+.card-img-top {
+    max-height: 286px;
+}
+
+.checked {
+    color: orange;
+}

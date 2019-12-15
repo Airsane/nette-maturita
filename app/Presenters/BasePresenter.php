@@ -17,6 +17,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     public $autentificator;
     public $houseManager;
 
+    protected function beforeRender()
+    {
+        $this->template->addFilter('stripTags', function ($obsah) {
+            return strip_tags($obsah);
+        });
+    }
+
     public function __construct(Nette\Database\Context $database)
     {
         $this->database = $database;
