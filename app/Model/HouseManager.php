@@ -34,8 +34,12 @@ class HouseManager
 
     public function getHouses($offset, $limit)
     {
-        return $this->database->table('house')->select('house.*')->select(':image.name AS "image"')->where(':image.isDefault=1');
+        return $this->database->table('house')->select('house.*')->select(':image.name AS "image"')->where(':image.isDefault=1')->limit($limit, $offset);
+    }
 
+    public function getRandomHouses()
+    {
+        return $this->database->table('house')->select('house.*')->select(':image.name AS "image"')->where(':image.isDefault=1')->order('RAND()')->limit(3);
     }
 
     public function getHouseCount()

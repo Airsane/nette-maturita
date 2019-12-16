@@ -21,9 +21,7 @@
                         <h5 class="card-title">{$house->name}</h5>
                         <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> {$house->street}
                             - {$house->city}</h6>
-
-                        <div class="card-text"
-                             style="height: 131px; overflow: hidden; text-overflow: ellipsis;">{$house->description|noescape}</div>
+                        <div class="card-text">{$house->description|stripTags|truncate:250} </div>
                         <a n:href="House:show $house->id" class="btn btn-primary">Více informací</a>
                     </div>
                 </div>

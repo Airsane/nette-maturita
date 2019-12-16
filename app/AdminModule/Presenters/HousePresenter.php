@@ -104,7 +104,7 @@ final class HousePresenter extends Nette\Application\UI\Presenter
         $this->database->beginTransaction();
         try {
             $z = $this->database->table('house')->insert(['name' => $values->name, 'description' => $values->description, 'price' => $values->price, 'beds' => $values->price, 'city' => $values->city, 'street' => $values->street, 'postcode' => $values->postcode]);
-            $this->savePhotos($values->photos, $z->idhouse);
+            $this->savePhotos($values->photos, $z->id);
             $this->database->commit();
         } catch (PDOException $e) {
             $this->database->rollBack();
