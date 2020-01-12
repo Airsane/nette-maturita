@@ -23,7 +23,7 @@
                     <em class="fas fa-user"></em> {$user->getIdentity()->firstname} {$user->getIdentity()->lastname}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right bg-primary">
-                    {if $user->isInRole(1)}
+                    {if $user->getRoles()[0] == 1}
                         <a class="dropdown-item" href="#"><em class="fas fa-bookmark"></em> Administrace</a>
                     {/if}
                     <a class="dropdown-item" href="#"><em class="fas fa-bookmark"></em> Rezervace</a>
