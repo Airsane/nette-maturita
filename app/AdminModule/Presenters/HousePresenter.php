@@ -7,8 +7,8 @@ namespace App\AdminModule\Presenters;
 use App\Model\HouseManager;
 use Nette;
 use Nette\Application\UI\Form;
+use Nette\Utils\Image;
 use Tomaj\Form\Renderer\BootstrapVerticalRenderer;
-
 
 final class HousePresenter extends Nette\Application\UI\Presenter
 {
@@ -42,8 +42,20 @@ final class HousePresenter extends Nette\Application\UI\Presenter
     {
         $data = $this->database->table('image')->get($imgId);
         $path = 'res/img/house/' . $data->name;
+        unlink('res/img/house/thumb/' . $data->name);
         unlink($path);
         $this->database->table('image')->get($imgId)->delete();
+    }
+
+    public function handleDeleteHouse(int $houseId): void
+    {
+        $images = $this->database->table('image')->select('*')->where('house_id=?', $houseId)->fetchAll();
+        foreach ($images as $image) {
+            unlink('res/img/house/thumb/' . $image->name);
+            unlink('res/img/house/' . $image->name);
+        }
+        $this->database->table('image')->where('house_id=?', $houseId)->delete();
+        $this->database->table('house')->get($houseId)->delete();
     }
 
     public function handleSetDefault(int $imgId)
@@ -126,8 +138,12 @@ final class HousePresenter extends Nette\Application\UI\Presenter
                 } else {
                     $file->move('res/img/house/' . $file_name);
                     $this->database->query('INSERT INTO image (house_id,name,isDefault) VALUES (?,?,?)', $idd, $file_name, $key == 0 ? 1 : 0);
-
                 }
+                $image = Image::fromFile('res/img/house/' . $file_name);
+                $image->resize(750, 450, Image::EXACT);
+                $image->save('res/img/house/' . $file_name, 100, Image::PNG);
+                $image->resize(300, 250, Image::EXACT);
+                $image->save('res/img/house/thumb/' . $file_name, 100, Image::PNG);
             }
         }
     }

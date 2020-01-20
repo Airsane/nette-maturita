@@ -1,0 +1,41 @@
+{* This is the welcome page, you can delete it *}
+
+{block content}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row bg-white p-4 border-bottom">
+                <div class="col-lg-8">
+                    <h1>Informace o {$userD->firstname} {$userD->lastname}</h1>
+                </div>
+            </div>
+            <div class="row m-1 mt-4">
+                <div class="col-lg-6 ">
+                    <div class="col-lg-12 p-4 bg-white round-large border">
+                        <div class="pb-2 col-lg-12 header"><span class="small" style="color:#666;"><i
+                                        class="fa fa-user"></i> <b>{$userD->firstname} {$userD->lastname} [{$userD->id|padLeft:4:0}]</b> - {$userD->email} </span>
+                            <hr>
+                        </div>
+                        <div class="col-lg-12 small">
+                            <p>Telefon: {$userD->phone}</p>
+                            <p>Datum registrace: {$userD->created}</p>
+                            <p>Poslední návštěva: {$userD->created}</p>
+                            <p>Průměrné hodnocení: 1</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 ">
+                    <div class="col-lg-12 p-4 bg-white round-large border">
+                        <div class="pb-2 col-lg-12 header"><span class="small" style="color:#666;"><i
+                                        class="fa fa-gears"></i> <b>Úprava uživatele</b> </span>
+                            <hr>
+                        </div>
+                        <div class="col-lg-12 small">
+                            TODO: Přidat změnu hesla přidání admin role odebrání uživatele
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
