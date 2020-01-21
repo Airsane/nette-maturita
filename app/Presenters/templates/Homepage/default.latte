@@ -22,7 +22,7 @@
                         <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> {$house->street}
                             - {$house->city}</h6>
                         <div class="card-text">{$house->description|stripTags|truncate:250} </div>
-                        <a n:href="House:show $house->id" class="btn btn-primary">Více informací</a>
+                        <a n:href="House:default $house->id" class="btn btn-primary">Více informací</a>
                     </div>
                 </div>
             </div>

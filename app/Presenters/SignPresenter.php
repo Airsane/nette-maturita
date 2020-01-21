@@ -15,11 +15,13 @@ use Tomaj\Form\Renderer\BootstrapVerticalRenderer;
 
 class SignPresenter extends BasePresenter
 {
+
     public function actionOut()
     {
         $this->getUser()->logout();
         $this->flashMessage('Sign out succeeded.');
         $this->redirect('Homepage:');
+
     }
 
     public function registerFormSucceeded(Form $form, \stdClass $values)

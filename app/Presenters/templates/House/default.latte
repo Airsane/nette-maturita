@@ -35,8 +35,9 @@
                     <span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
                 </div>
-                <div class="bg-light p-3 mb-2">od <b style="font-size: 30px;">{$house->price} Kč</b></div>
-                <button class="btn btn-primary">Rezervovat</button>
+                <div class="bg-light p-3 mb-2">od <b
+                            style="font-size: 30px;">{$house->price|number:0,',':'&nbsp'|noescape} Kč</b></div>
+                <button data-toggle="modal" data-target="#reservationModal" class="btn btn-primary">Rezervovat</button>
                 <div class="mt-2">{$house->description|stripTags|truncate:500}</div>
             </div>
         </div>
@@ -57,7 +58,7 @@
                             <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> {$housed->street}
                                 - {$house->city}</h6>
                             <div class="card-text">{$housed->description|stripTags|truncate:250} </div>
-                            <a n:href="House:show $housed->id" class="btn btn-primary">Více informací</a>
+                            <a n:href="House:default $housed->id" class="btn btn-primary">Více informací</a>
                         </div>
                     </div>
                 </div>
@@ -66,6 +67,21 @@
     </div>
 </div>
 
-<style>
+<div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Rezervace</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {control reservationForm}
 
-</style>
+            </div>
+
+        </div>
+    </div>
+</div>

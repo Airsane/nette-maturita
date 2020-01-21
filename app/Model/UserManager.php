@@ -4,7 +4,6 @@
 namespace App\Model;
 
 use Nette;
-use Nette\Security\Passwords;
 
 
 class UserManager
@@ -19,22 +18,28 @@ class UserManager
 
     public function changePassword($oldpass, $newpass, $userid)
     {
-        $row = $this->database->table('users')->select('password')->get($userid);
-        if (!Nette\Security\Passwords::verify($oldpass, $row->password)) {
+        $row = $this->database->table('user')->select('password')->get($userid);
+        if (!(new \Nette\Security\Passwords)->verify($oldpass, $row->password)) {
             return false;
         }
-        $this->database->table('users')->get($userid)->update(['password' => Passwords::hash($newpass)]);
+        $this->database->table('user')->get($userid)->update(['password' => (new \Nette\Security\Passwords)->hash($newpass)]);
         return true;
     }
 
-    public function getUser($id)
+    public function getUsers($userID, $offset, $limit)
     {
-        return $this->database->fetch('SELECT * FROM user where id = ?', $id)->fetch();
+        return $this->database->fetchAll('SELECT * FROM user WHERE NOT id = ? LIMIT ?,?', $userID, $offset, $limit);
     }
 
-    public function getUsers($offset, $limit)
+    public function deleteUser($userId)
     {
-        return $this->database->fetchAll('SELECT * FROM user LIMIT ?,?', $offset, $limit);
+
+    }
+
+    public function setAdmin($userId)
+    {
+        $user = $this->database->table('user')->get($userId);
+        $user->admin == 1 ? $user->update(array('admin' => 0)) : $user->update(array('admin' => 1));
     }
 
     public function getUserCount()

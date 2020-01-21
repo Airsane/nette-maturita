@@ -6,17 +6,15 @@
         <div class="col-lg-12">
             <div class="row bg-white p-4 border-bottom">
                 <div class="col-lg-8">
-                    <h1>Výpis Ubytování:</h1>
+                    <h1>Výpis Rezervací:</h1>
                 </div>
             </div>
             <div class="row m-1 mt-4">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="float-left"><h5>Ubytování <span
-                                            class="badge badge-secondary">{$houseCount}</span></h5>
-                            </div>
-                            <div class="float-right"><a n:href="House:add">Přidat Ubytování</a>
+                            <div class="float-left"><h5>Rezervace <span
+                                            class="badge badge-secondary">{$reservationCount}</span></h5>
                             </div>
                         </div>
                         <div class="card-block">
@@ -25,22 +23,32 @@
                                     <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Název</th>
-                                        <th scope="col"></th>
+                                        <th scope="col">Název ubytování</th>
+                                        <th scope="col">Email</th>
+                                        <th>Status</th>
+                                        <th>Od</th>
+                                        <th>Do</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {foreach $houses as $house}
-                                        <tr n:href="House:show $house->id">
-                                            <th scope="row">{$house->id}</th>
-                                            <td>{$house->name}</td>
+                                    <tbody>
+                                    {foreach $reservations as $reservation}
+                                        <tr n:href="Reservation:show $reservation->id">
+                                            <th scope="row">{$reservation->id}</th>
+                                            <td>{$reservation->name}</td>
+                                            <td>{$reservation->email}</td>
+                                            <td>{$reservation->value}</td>
+                                            <td>{$reservation->start|date:'%d.%m.%Y'}</td>
+                                            <td>{$reservation->end|date:'%d.%m.%Y'}</td>
                                             <td>
-                                                <a onclick="return confirm('Opravdu chce vymazat ubytování {$house->name}?')"
-                                                   href="{link deleteHouse!, $house->id}"><i class="fa fa-trash"
-                                                                                             aria-hidden="true"></i></a>
+                                                <a onclick="return confirm('Opravdu chce vymazat ubytování')"
+                                                   href=""><i class="fa fa-trash"
+                                                              aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
                                     {/foreach}
+                                    </tbody>
                                     </tbody>
                                 </table>
                             </div>

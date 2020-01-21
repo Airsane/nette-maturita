@@ -30,7 +30,7 @@
     }
 
     .search-bar {
-        background-image: url('../img/13.jpg');
+        background-image: url('../img/14.jpg');
         background-size: cover;
         background-position: center;
         height: 400px;
@@ -38,6 +38,10 @@
         justify-content: center;
         align-items: center;
     }
+}
+
+.invalid-feedback {
+    display: block !important;
 }
 
 .card-img-top {

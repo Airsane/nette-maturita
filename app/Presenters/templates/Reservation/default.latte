@@ -11,8 +11,45 @@
 </div>
 
 
-<div class="container-fluid p-4">
-    <div class="row">
-        <h1>kys</h1>
+<div class="container p-4">
+    <div class="card">
+        <div class="card-header">
+            <div class="float-left"><h5>Rezervace <span
+                            class="badge badge-secondary">{$reservationCount}</span></h5>
+            </div>
+        </div>
+        <div class="card-block">
+            <div class="table-responsive">
+                <table aria-describedby="Výpis ubytování" class="table table-hover text-center">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Název ubytování</th>
+                        <th scope="col">Počet postelí</th>
+                        <th>Cena</th>
+                        <th>Status</th>
+                        <th>Od</th>
+                        <th>Do</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tbody>
+                    {foreach $reservations as $reservation}
+                        <tr href="">
+                            <th scope="row">{$reservation->id}</th>
+                            <td>{$reservation->name}</td>
+                            <td>{$reservation->beds}</td>
+                            <td>{$reservation->price|number:0,',':'&nbsp'|noescape}</td>
+                            <td>{$reservation->value}</td>
+                            <td>{$reservation->start|date:'%d.%m.%Y'}</td>
+                            <td>{$reservation->end|date:'%d.%m.%Y'}</td>
+
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

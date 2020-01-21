@@ -5,6 +5,8 @@ namespace App\Presenters;
 
 use App\Model\HouseManager;
 use App\Model\MyAuthenticator;
+use App\Model\ReservationManager;
+use App\Model\UserManager;
 use Nette;
 use Nette\Application\UI\Form;
 use Tomaj\Form\Renderer\BootstrapVerticalRenderer;
@@ -16,6 +18,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     public $database;
     public $autentificator;
     public $houseManager;
+    public $userManager;
+    public $reservationManager;
 
     protected function beforeRender()
     {
@@ -29,6 +33,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
         $this->database = $database;
         $this->autentificator = new MyAuthenticator($database);
         $this->houseManager = new HouseManager($database);
+        $this->userManager = new UserManager($database);
+        $this->reservationManager = new ReservationManager($database);
     }
 
     public function loginFormSucceeded(Form $form, \stdClass $values)
