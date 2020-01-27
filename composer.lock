@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "7f0c5b3818f0bb00fea128ac0840084d",
+  "content-hash": "216ffe99743fc7aeda61c53fee9671ab",
   "packages": [
     {
       "name": "aleswita/formrenderer",
@@ -1280,6 +1280,48 @@
         "validation"
       ],
       "time": "2019-10-21T20:40:16+00:00"
+    },
+    {
+      "name": "nittro/nette-bridges",
+      "version": "v2.1.3",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/nittro/nette-bridges.git",
+        "reference": "3334adb0c9a4fb1f660dbf0a5cfae5745b51dbfa"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/nittro/nette-bridges/zipball/3334adb0c9a4fb1f660dbf0a5cfae5745b51dbfa",
+        "reference": "3334adb0c9a4fb1f660dbf0a5cfae5745b51dbfa",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=7.1"
+      },
+      "require-dev": {
+        "latte/latte": "^3.0",
+        "nette/application": "^3.0",
+        "nette/di": "^3.0"
+      },
+      "type": "library",
+      "autoload": {
+        "classmap": [
+          "src/"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Dan Kadera",
+          "email": "me@subsonic.cz"
+        }
+      ],
+      "description": "Nittro PHP bridges",
+      "homepage": "https://www.nittro.org/",
+      "time": "2019-08-28T13:44:24+00:00"
     },
     {
       "name": "tomaj/nette-bootstrap-form",

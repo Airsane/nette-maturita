@@ -8,7 +8,7 @@ use App\Model\ReservationManager;
 use Nette;
 
 
-final class ReservationPresenter extends Nette\Application\UI\Presenter
+final class ReservationPresenter extends BasePresenter
 {
     private $database;
     private $reservationManager;

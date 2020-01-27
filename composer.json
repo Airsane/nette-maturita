@@ -28,7 +28,8 @@
     "latte/latte": "^2.5",
     "tracy/tracy": "^2.6",
     "aleswita/formrenderer": "^1.3",
-    "tomaj/nette-bootstrap-form": "^2.0"
+    "tomaj/nette-bootstrap-form": "^2.0",
+    "nittro/nette-bridges": "^2.1"
   },
   "require-dev": {
     "nette/tester": "^2.0"

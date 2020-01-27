@@ -10,7 +10,7 @@ use Nette\Application\UI\Form;
 use Nette\Utils\Image;
 use Tomaj\Form\Renderer\BootstrapVerticalRenderer;
 
-final class HousePresenter extends Nette\Application\UI\Presenter
+final class HousePresenter extends BasePresenter
 {
     private $database;
     private $houseManager;
@@ -115,7 +115,7 @@ final class HousePresenter extends Nette\Application\UI\Presenter
     {
         $this->database->beginTransaction();
         try {
-            $z = $this->database->table('house')->insert(['name' => $values->name, 'description' => $values->description, 'price' => $values->price, 'beds' => $values->price, 'city' => $values->city, 'street' => $values->street, 'postcode' => $values->postcode]);
+            $z = $this->database->table('house')->insert(['name' => $values->name, 'description' => $values->description, 'price' => $values->price, 'beds' => $values->beds, 'city' => $values->city, 'street' => $values->street, 'postcode' => $values->postcode]);
             $this->savePhotos($values->photos, $z->id);
             $this->database->commit();
         } catch (PDOException $e) {

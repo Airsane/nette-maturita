@@ -1,31 +1,44 @@
 {* This is the welcome page, you can delete it *}
 
 {block content}
+<script>
+
+</script>
 <div class="search-bar mx-sm-auto">
-    <form class=" form-inline p-md-4 p-sm-0 ">
-        <input class="form-control mr-sm-2" type="text" placeholder="Např. Pardubice">
-        <input class="form-control mr-sm-2" type="date" value="{date('Y-m-d')}" name="">
-        <input class="form-control mr-sm-2" type="date" value="{date('Y-m-d', strtotime("tomorrow"))}" name="">
-        <input type="button" class="form-control mr-sm-2" value="Hledat">
+    <form data-ajax="false" n:name="searchForm" class="">
+        <div class="form-inline p-md-4 p-sm-0"><input n:name="search" class="form-control mr-sm-2" type="text"
+                                                                      placeholder="Např. Pardubice">
+            <input class="form-control mr-sm-2" type="date" value="{date('Y-m-d')}" name="">
+            <input class="form-control mr-sm-2" type="date" value="{date('Y-m-d', strtotime("tomorrow"))}" name="">
+            <button n:name="send" class="form-control mr-sm-2"><i class="fa fa-fw fa-search"></i></button>
+        </div>
+
     </form>
 </div>
 
 
 <div class="container-fluid p-4">
-    <div class="row">
-        {foreach $houses as $house}
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img src="{$basePath}/res/img/house/thumb/{$house->image}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{$house->name}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> {$house->street}
-                            - {$house->city}</h6>
-                        <div class="card-text">{$house->description|stripTags|truncate:250} </div>
-                        <a n:href="House:default $house->id" class="btn btn-primary">Více informací</a>
+    {snippet test}
+        <div class="row">
+            {foreach $houses as $house}
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="{$basePath}/res/img/house/thumb/{$house->image}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{$house->name}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> {$house->street}
+                                - {$house->city}</h6>
+                            <div class="card-text">{$house->description|stripTags|truncate:250} </div>
+                            <a n:href="House:default $house->id" class="btn btn-primary">Více informací</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {/foreach}
-    </div>
+            {/foreach}
+        </div>
+    {/snippet}
 </div>
+
+{block script}
+
+
+{/block}

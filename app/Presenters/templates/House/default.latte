@@ -37,7 +37,9 @@
                 </div>
                 <div class="bg-light p-3 mb-2">od <b
                             style="font-size: 30px;">{$house->price|number:0,',':'&nbsp'|noescape} Kč</b></div>
-                <button data-toggle="modal" data-target="#reservationModal" class="btn btn-primary">Rezervovat</button>
+               {if $user->isLoggedIn()}
+                   <button data-toggle="modal" data-target="#reservationModal" class="btn btn-primary">Rezervovat
+                   </button>{/if}
                 <div class="mt-2">{$house->description|stripTags|truncate:500}</div>
             </div>
         </div>
