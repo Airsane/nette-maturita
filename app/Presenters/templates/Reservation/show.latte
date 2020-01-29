@@ -1,14 +1,15 @@
 {block content}
-    <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">
-        {$flash->message}
+    <div class="search-bar mx-sm-auto mb-4">
+
+        <h1 class="p-md-4 p-sm-0 "
+            style="background-color: rgba(62, 63, 58, 0.6); color:white;" n:block="title">Rezervace
+            č.{$reservation->id}</h1>
     </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="row bg-white p-4 border-bottom">
-                    <div class="col-lg-8">
-                        <h1>Rezervace č.{$reservation->id} :</h1>
-                    </div>
+
                 </div>
                 <div class="row m-1 mt-4">
                     <div class="col-lg-6 ">
@@ -18,10 +19,7 @@
                             </div>
                             <div class="card-block p-3">
                                 <p><b>Ubytování:</b> <a
-                                            style="color: #1b1e21" n:href="House:show $reservation->house_id">{$reservation->name}</a>
-                                </p>
-                                <p><b>Uživatel:</b> <a
-                                            style="color: #1b1e21" n:href="User:show $reservation->user_id">{$reservation->email}</a>
+                                            style="color: #1b1e21" n:href="House:default $reservation->house_id">{$reservation->name}</a>
                                 </p>
                                 <p><b>Status:</b> {$reservation->value}</p>
                                 <p><b>Od:</b> {$reservation->start|date:'%d.%m.%Y'}</p>
@@ -39,9 +37,11 @@
                             <div class="card-header"><span class="small" style="color:#666;">Editace</span>
                             </div>
                             <div class="card-block p-3">
-                                {control statusForm}
-                                {control dateForm}
                                 {control bedsForm}
+                                {if $reservation->status_id != 4 && $reservation->status_id != 3}<a
+                                    onclick="return confirm('Opravdu chce zrušit rezervaci?')"
+                                    href="{link cancelReservation! $reservation->id}" class="btn btn-danger button">
+                                        Zrušit rezervaci</a>{/if}
                             </div>
                         </div>
                     </div>

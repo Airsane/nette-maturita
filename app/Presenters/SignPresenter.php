@@ -19,7 +19,7 @@ class SignPresenter extends BasePresenter
     public function actionOut()
     {
         $this->getUser()->logout();
-        $this->flashMessage('Sign out succeeded.');
+        $this->flashMessage('Odhlášení bylo úspěšné!', 'success');
         $this->redirect('Homepage:');
 
     }
@@ -27,7 +27,7 @@ class SignPresenter extends BasePresenter
     public function registerFormSucceeded(Form $form, \stdClass $values)
     {
         if ($this->user->isLoggedIn()) {
-            $this->flashMessage("Error you dont belong here");
+            $this->flashMessage("Chyba nepatříš sem!", 'danger');
             $this->redirect('Homepage:default');
             exit;
         }
@@ -36,13 +36,14 @@ class SignPresenter extends BasePresenter
             try {
                 $row = $this->database->table('user')->insert(array('firstname' => $values->firstname, 'lastname' => $values->lastname, 'password' => (new \Nette\Security\Passwords)->hash($values->password), 'email' => $values->email, 'phone' => $values->phone));
                 $this->database->commit();
+                $this->flashMessage("Účet byl vytvořen!", "success");
                 $this->redirect('Homepage:');
             } catch (PDOException $e) {
                 $this->database->rollBack();
-                $this->flashMessage('Registrace se nepodařila');
+                $this->flashMessage('Registrace se nepodařila!', 'danger');
             }
         } catch (Nette\Database\UniqueConstraintViolationException $e) {
-            $this->flashMessage('Registrace se nepodařila. Email je již zabraný');
+            $this->flashMessage('Registrace se nepodařila. Email je již zabraný!', 'danger');
         }
     }
 

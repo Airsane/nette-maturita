@@ -35,15 +35,14 @@
                     <tbody>
                     <tbody>
                     {foreach $reservations as $reservation}
-                        <tr href="">
+                        <tr n:href="Reservation:show $reservation->id">
                             <th scope="row">{$reservation->id}</th>
                             <td>{$reservation->name}</td>
                             <td>{$reservation->beds}</td>
-                            <td>{$reservation->price|number:0,',':'&nbsp'|noescape}</td>
+                            <td>{$reservation->price*$reservation->DateDiff|number:0,',':'&nbsp'|noescape} Kč</td>
                             <td>{$reservation->value}</td>
                             <td>{$reservation->start|date:'%d.%m.%Y'}</td>
                             <td>{$reservation->end|date:'%d.%m.%Y'}</td>
-
                         </tr>
                     {/foreach}
                     </tbody>
@@ -53,3 +52,15 @@
         </div>
     </div>
 </div>
+{block script}
+    <script>
+        $('table tr[href] td:not(:last-child)').click(function () {
+            window.location = $(this).parent().attr('href');
+            return false;
+        });
+    </script>
+    <style>    table tr[href] {
+            cursor: pointer;
+        }
+    </style>
+{/block}

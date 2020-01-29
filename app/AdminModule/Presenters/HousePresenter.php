@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\AdminModule\Presenters;
 
 use App\Model\HouseManager;
+use App\Model\ReservationManager;
 use Nette;
 use Nette\Application\UI\Form;
 use Nette\Utils\Image;
@@ -14,11 +15,13 @@ final class HousePresenter extends BasePresenter
 {
     private $database;
     private $houseManager;
+    private $reservationModule;
 
     public function __construct(Nette\Database\Context $database)
     {
         $this->database = $database;
         $this->houseManager = new HouseManager($database);
+        $this->reservationModule = new ReservationManager($database);
     }
 
     public function renderDefault()
@@ -35,6 +38,7 @@ final class HousePresenter extends BasePresenter
         }
         $this->template->house = $house;
         $this->template->photos = $this->houseManager->getHousePhotos($id);
+        $this->template->reservations = $this->reservationModule->getHouseReservations($id, 0, 10);
         $this['editForm']->setDefaults($house->toArray());
     }
 

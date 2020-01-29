@@ -1,89 +1,219 @@
 {block content}
-<div class="search-bar mx-sm-auto mb-4">
+    <div class="search-bar mx-sm-auto mb-4">
 
-    <h1 class="p-md-4 p-sm-0 "
-        style="background-color: rgba(62, 63, 58, 0.6); color:white;" n:block="title">{$house->name}</h1>
-</div>
-<div class="container">
-    <div class="card mb-3">
-        <div class="card-body row">
-            <div class="col-md-8">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        {foreach $photos as $photo}
-                            <div n:class="$iterator->first ? 'carousel-item active':'carousel-item'">
-                                <img class="img-fluid" src="{$basePath}/res/img/house/{$photo->name}">
-                            </div>
-                        {/foreach}
+        <h1 class="p-md-4 p-sm-0 "
+            style="background-color: rgba(62, 63, 58, 0.6); color:white;" n:block="title">{$house->name}</h1>
+    </div>
+    <div class="container">
+        <div class="card mb-3">
+            <div class="card-body row">
+                <div class="col-md-8">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            {foreach $photos as $photo}
+                                <div n:class="$iterator->first ? 'carousel-item active':'carousel-item'">
+                                    <img class="img-fluid" src="{$basePath}/res/img/house/{$photo->name}">
+                                </div>
+                            {/foreach}
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                           data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Předchozí</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                           data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Další</span>
+                        </a>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Předchozí</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Další</span>
-                    </a>
+                </div>
+                <div class="col-md-4"><h1>{$house->name}</h1><h6 class="card-subtitle mb-2 text-muted"><em
+                                class="fas fa-map-pin"></em> {$house->street}
+                        - {$house->city}, Česká republika</h6>
+                    <div class="raiting mb-2"><span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <div class="bg-light p-3 mb-2">od <b
+                                style="font-size: 30px;">{$house->price|number:0,',':'&nbsp'|noescape} Kč</b> za noc
+                    </div>
+                    {if $user->isLoggedIn()}
+                        <button data-toggle="modal" data-target="#reservationModal" class="btn btn-primary">Rezervovat
+                        </button>{/if}
+                    <div class="mt-2">{$house->description|stripTags|truncate:500}</div>
                 </div>
             </div>
-            <div class="col-md-4"><h1>{$house->name}</h1><h6 class="card-subtitle mb-2 text-muted"><em
-                            class="fas fa-map-pin"></em> {$house->street}
-                    - {$house->city}, Česká republika</h6>
-                <div class="raiting mb-2"><span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                </div>
-                <div class="bg-light p-3 mb-2">od <b
-                            style="font-size: 30px;">{$house->price|number:0,',':'&nbsp'|noescape} Kč</b></div>
-               {if $user->isLoggedIn()}
-                   <button data-toggle="modal" data-target="#reservationModal" class="btn btn-primary">Rezervovat
-                   </button>{/if}
-                <div class="mt-2">{$house->description|stripTags|truncate:500}</div>
-            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">{$house->description|noescape}
-        </div>
-    </div>
-
-    <div><h1 class="text-center">Mohlo by se Vám také líbit</h1>
         <div class="row">
-            {foreach $houses as $housed}
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="{$basePath}/res/img/house/thumb/{$housed->image}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">{$housed->name}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted"><em class="fas fa-map-pin"></em> {$housed->street}
-                                - {$house->city}</h6>
-                            <div class="card-text">{$housed->description|stripTags|truncate:250} </div>
-                            <a n:href="House:default $housed->id" class="btn btn-primary">Více informací</a>
+            <div class="col-md-7">{$house->description|noescape}
+            </div>
+            <div class="col-md-5">
+                <h3 class="card-header" id="monthAndYear"></h3>
+                <table class="table table-bordered table-responsive-sm text-center" id="calendar">
+                    <thead>
+                    <tr>
+                        <th>Po</th>
+                        <th>Út</th>
+                        <th>St</th>
+                        <th>Čt</th>
+                        <th>Pá</th>
+                        <th>So</th>
+                        <th>Ne</th>
+                    </tr>
+                    </thead>
+                    <tbody id="calendar-body">
+                    </tbody>
+                </table>
+                <div class="form-inline">
+                    <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Předchozí
+                    </button>
+
+                    <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Další</button>
+                </div>
+            </div>
+        </div>
+        <div class="mt-3"><h1 class="text-center">Mohlo by se Vám také líbit</h1>
+            <div class="row">
+                {foreach $houses as $housed}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="{$basePath}/res/img/house/thumb/{$housed->image}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{$housed->name}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted"><em
+                                            class="fas fa-map-pin"></em> {$housed->street}
+                                    - {$house->city}</h6>
+                                <div class="card-text">{$housed->description|stripTags|truncate:250} </div>
+                                <a data-ajax="false" n:href="House:default $housed->id" class="btn btn-primary">Více
+                                    informací</a>
+                            </div>
                         </div>
                     </div>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Rezervace</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <div class="modal-body">
+                    {control reservationForm}
+                    <h3>Cena: </h3>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{/block}
+{block scripts}
+    <script>
+
+        formController();
+
+        function formController() {
+            let t = document.querySelectorAll('input[type=date]');
+            let d = document.querySelector('#priceCalc');
+            let price = {$house->price};
+            t.forEach((tt) => {
+                tt.addEventListener('change', (e) => {
+                    let diff = Math.abs(new Date(t[0].value) - new Date(t[1].value));
+                    let diffD = Math.ceil(diff / (1000 * 60 * 60 * 24));
+                    let pp = price * (diffD == 0 ? 1 : diffD);
+                    d.value = pp.toLocaleString() + " Kč"
+                })
+            })
+        }
+
+
+        let dates = [
+            {foreach $dates as $date}
+            {'start':{$date->start|date:'%Y-%m-%d'}, 'end':{$date->end|date:'%Y-%m-%d'}},
             {/foreach}
-        </div>
-    </div>
-</div>
+        ];
+        let today = new Date();
+        let currentMonth = today.getMonth();
+        let currentYear = today.getFullYear();
+        let months = ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'];
 
-<div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-     aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Rezervace</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                {control reservationForm}
+        showCalendar(currentMonth, currentYear);
 
-            </div>
+        function next() {
+            currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
+            currentMonth = (currentMonth + 1) % 12;
+            showCalendar(currentMonth, currentYear);
+        }
 
-        </div>
-    </div>
-</div>
+        function previous() {
+            currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
+            currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+            showCalendar(currentMonth, currentYear);
+        }
+
+        function showCalendar(month, year) {
+
+            let firstDay = (new Date(year, month)).getDay();
+            let daysInMonth = 32 - new Date(year, month, 32).getDate();
+
+            let tbl = document.getElementById("calendar-body"); // body of the calendar
+
+            // clearing all previous cells
+            tbl.innerHTML = "";
+
+            // filing data about month and in the page via DOM.
+            monthAndYear.innerHTML = months[month] + " " + year;
+
+            // creating all cells
+            let date = 1;
+            for (let i = 0; i < 6; i++) {
+                // creates a table row
+                let row = document.createElement("tr");
+
+                //creating individual cells, filing them up with data.
+                for (let j = 0; j < 7; j++) {
+                    if (i === 0 && j < firstDay) {
+                        let cell = document.createElement("td");
+                        let cellText = document.createTextNode("");
+                        cell.appendChild(cellText);
+                        row.appendChild(cell);
+                    } else if (date > daysInMonth) {
+                        break;
+                    } else {
+                        let cell = document.createElement("td");
+                        let cellText = document.createTextNode(date);
+                        for (let i = 0; i < dates.length; i++) {
+                            let t1 = new Date(dates[i].start);
+                            let t2 = new Date(dates[i].end);
+                            let d = month >= 9 ? (month + 1) : '0' + (month + 1);
+                            let t3 = new Date(year + '-' + d + '-' + date);
+                            if (t3 >= t1 && t3 <= t2) {
+                                cell.classList.add("bg-danger");
+                            }
+
+                        }
+                        cell.appendChild(cellText);
+                        row.appendChild(cell);
+                        date++;
+                    }
+
+
+                }
+
+                tbl.appendChild(row); // appending each row into calendar body.
+            }
+        }
+
+
+    </script>
+{/block}

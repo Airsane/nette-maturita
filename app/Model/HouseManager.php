@@ -46,4 +46,9 @@ class HouseManager
     {
         return $this->database->table('house')->count();
     }
+
+    public function findHouses($data, $offset, $limit)
+    {
+        return $this->database->table('house')->select('house.*')->where('city LIKE "' . $data . '%"')->select(':image.name AS "image"')->where(':image.isDefault=1')->limit($limit, $offset);
+    }
 }

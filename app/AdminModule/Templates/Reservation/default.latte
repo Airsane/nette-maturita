@@ -6,7 +6,7 @@
         <div class="col-lg-12">
             <div class="row bg-white p-4 border-bottom">
                 <div class="col-lg-8">
-                    <h1>Výpis Rezervací:</h1>
+                    <h1>Výpis rezervací:</h1>
                 </div>
             </div>
             <div class="row m-1 mt-4">
@@ -32,7 +32,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tbody>
                                     {foreach $reservations as $reservation}
                                         <tr n:href="Reservation:show $reservation->id">
                                             <th scope="row">{$reservation->id}</th>
@@ -48,7 +47,6 @@
                                             </td>
                                         </tr>
                                     {/foreach}
-                                    </tbody>
                                     </tbody>
                                 </table>
                             </div>

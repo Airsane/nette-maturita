@@ -39,6 +39,8 @@ class UserPresenter extends BasePresenter
         $this->template->userD = $userD;
         $this->template->reservations = $this->reservationManager->getUserReservations($id, 0, 10);
         $this->template->reservationCount = $this->reservationManager->getReservationCountUser($id);
+        $this->template->avgPrice = $this->reservationManager->getUserAveragePrice($id);
+        $this->template->avgBeds = $this->reservationManager->getUserAverageBeds($id);
     }
 
     public function renderDefault()

@@ -1,26 +1,110 @@
 {block content}
-<h1 class="mt-4">Ubytování: {$house->name}</h1>
-{control editForm}
-<h2 class="mt-4">Přidat obrázek:</h2>
-{control imageForm}
-<h2 class="mt-4">Obrázky:</h2>
-<div class="row">
-    {foreach $photos as $photo}
-        <div class="col-md-3 mb-2 p-2 photoHover">
-            <a href="{link setDefault!, $photo->id}"
-               class="setDefault btn btn-primary ">
-                Výchozí obrázek
-            </a>
-            <a href="{link delete!, $photo->id}"
-               onclick="return confirm('Opravdu chce vymazat obrázek?')"
-               class="deleteImg btn btn-danger">Odstanit obrázek
-            </a>
-            <img style="width: 100%;" src="{$basePath}/res/img/house/thumb/{$photo->name}" alt="">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row bg-white p-4 border-bottom">
+                    <div class="col-lg-8">
+                        <h1>Ubytování: {$house->name}</h1>
+                    </div>
+                </div>
+                <div class="row m-1 mt-4">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="float-left"><h5>Editace </h5>
+                                </div>
+                            </div>
+                            <div class="card-block p-3">
+                                {control editForm}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-1 mt-4">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="float-left"><h5>Přidat obrázky: </h5>
+                                </div>
+                            </div>
+                            <div class="card-block p-3">
+                                {control imageForm}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-1 mt-4">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="float-left"><h5>Obrázky </h5>
+                                </div>
+                            </div>
+                            <div class="card-block p-3">
+                                <div class="row pre-scrollable">
+                                    {foreach $photos as $photo}
+                                        <div class="col-md-3 mb-2 p-2 photoHover">
+                                            <a href="{link setDefault!, $photo->id}"
+                                               class="setDefault btn btn-primary ">
+                                                Výchozí obrázek
+                                            </a>
+                                            <a href="{link delete!, $photo->id}"
+                                               onclick="return confirm('Opravdu chce vymazat obrázek?')"
+                                               class="deleteImg btn btn-danger">Odstanit obrázek
+                                            </a>
+                                            <img style="width: 100%;"
+                                                 src="{$basePath}/res/img/house/thumb/{$photo->name}"
+                                                 alt="">
+                                        </div>
+                                    {/foreach}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-1 mt-4">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="float-left"><h5>Rezervace </h5>
+                                </div>
+                            </div>
+                            <div class="card-block p-3">
+                                <div class="table-responsive">
+                                    <table aria-describedby="Výpis ubytování" class="table table-hover text-center">
+                                        <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Název ubytování</th>
+                                            <th scope="col">Email</th>
+                                            <th>Status</th>
+                                            <th>Od</th>
+                                            <th>Do</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {dump $reservations}
+                                        {foreach $reservations as $reservation}
+                                            <tr n:href="Reservation:show $reservation->id">
+                                                <th scope="row">{$reservation->id}</th>
+                                                <td>{$reservation->name}</td>
+                                                <td>{$reservation->email}</td>
+                                                <td>{$reservation->value}</td>
+                                                <td>{$reservation->start|date:'%d.%m.%Y'}</td>
+                                                <td>{$reservation->end|date:'%d.%m.%Y'}</td>
+                                            </tr>
+                                        {/foreach}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    {/foreach}
-
-</div>
-
+    </div>
+{/block}
 {block scripts}
     <script>
         $('#summernote').summernote({
@@ -56,6 +140,17 @@
             position: absolute;
             opacity: 0;
             top: 3rem;
+        }
+    </style>
+
+    <script>
+        $('table tr[href] td:not(:last-child)').click(function () {
+            window.location = $(this).parent().attr('href');
+            return false;
+        });
+    </script>
+    <style>    table tr[href] {
+            cursor: pointer;
         }
     </style>
 {/block}

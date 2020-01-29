@@ -36,6 +36,21 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
         $this->reservationManager = new ReservationManager($database);
     }
 
+    protected function createComponentSearchForm()
+    {
+        $form = new Nette\Application\UI\Form;
+        $form->setRenderer(new BootstrapVerticalRenderer);
+        $form->addText('search', 'Hledat');
+        $form->addSubmit('send', 'Hledat');
+        $form->onSuccess[] = [$this, 'searchFormSucceeded'];
+        return $form;
+    }
+
+    public function searchFormSucceeded($form, $values)
+    {
+        $this->redirect('House:Search', $values->search);
+    }
+
     public $signaled = false;
 
     protected function startup()
@@ -56,17 +71,17 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     public function loginFormSucceeded(Form $form, \stdClass $values)
     {
         if ($this->user->isLoggedIn()) {
-            $this->flashMessage("Error you dont belong here");
+            $this->flashMessage("Chyba nepatříš sem!", 'danger');
             $this->redirect('Homepage:');
             exit;
         }
         try {
             $this->getUser()->setAuthenticator($this->autentificator);
             $this->getUser()->login($values->email, $values->password);
-            $this->flashMessage('Přihlášení bylo úspešné.', '-success');
+            $this->flashMessage('Přihlášení bylo úspešné!', 'success');
             $this->redirect('this');
         } catch (Nette\Security\AuthenticationException $e) {
-            $this->flashMessage('Neplatné jméno nebo heslo!');
+            $this->flashMessage('Neplatné jméno nebo heslo!', 'danger');
 
         }
     }

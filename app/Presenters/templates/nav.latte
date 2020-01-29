@@ -24,7 +24,8 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right bg-primary">
                     {if $user->getRoles()[0] == 1}
-                        <a class="dropdown-item" n:href=":Admin:Dashboard:default"><em class="fas fa-bookmark"></em>
+                        <a class="dropdown-item" data-ajax="false" n:href=":Admin:Dashboard:default"><em
+                                    class="fas fa-bookmark"></em>
                             Administrace</a>
                     {/if}
                     <a class="dropdown-item" n:href="Reservation:default"><em class="fas fa-bookmark"></em>

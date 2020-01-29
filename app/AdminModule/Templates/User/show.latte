@@ -15,10 +15,12 @@
                         <div class="card-header"><span class="small" style="color:#666;"><i
                                         class="fa fa-user"></i> <b>{$userD->firstname} {$userD->lastname} [{$userD->id|padLeft:4:0}]</b> - {$userD->email} </span>
                         </div>
-                        <div class="card-block p-2">
+                        <div class="card-block p-3">
                             <p>Telefon: {$userD->phone}</p>
                             <p>Datum registrace: {$userD->created}</p>
                             <p>Poslední návštěva: {$userD->created}</p>
+                            <p>Průměrná útrata: {$avgPrice->price|number:0,',':'&nbsp'|noescape} Kč</p>
+                            <p>Průměrný počet postelí: {$avgBeds->beds} </p>
                             <p>Průměrné hodnocení: 1</p>
                         </div>
                     </div>
@@ -27,7 +29,7 @@
                     <div class="card">
                         <div class="card-header"><span class="small" style="color:#666;">Úprava uživatele</span>
                         </div>
-                        <div class="card-block p-2">
+                        <div class="card-block p-3">
                             TODO: Přidat změnu hesla přidání admin role odebrání uživatele
                         </div>
                     </div>
@@ -54,8 +56,6 @@
                                         <th>Do</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tbody>
                                     {foreach $reservations as $reservation}
                                         <tr n:href="Reservation:show $reservation->id">
                                             <th scope="row">{$reservation->id}</th>
@@ -64,10 +64,8 @@
                                             <td>{$reservation->value}</td>
                                             <td>{$reservation->start|date:'%d.%m.%Y'}</td>
                                             <td>{$reservation->end|date:'%d.%m.%Y'}</td>
-
                                         </tr>
                                     {/foreach}
-                                    </tbody>
                                     </tbody>
                                 </table>
                             </div>
@@ -76,7 +74,9 @@
                 </div>
             </div>
         </div>
-        {block script}
+    </div>
+</div>
+{block script}
     <script>
         $('table tr[href] td:not(:last-child)').click(function () {
             window.location = $(this).parent().attr('href');

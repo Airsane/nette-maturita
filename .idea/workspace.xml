@@ -2,31 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="244cb131-68c8-4f13-9fe9-40029479cfdf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/AdminModule/Presenters/BasePresenter.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Presenters/templates/House/search.latte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Presenters/templates/Profile/test.latte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Presenters/templates/Reservation/show.latte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/274cb67c-19d1-4bbd-bee3-1fc14ac7aab2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/274cb67c-19d1-4bbd-bee3-1fc14ac7aab2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/nette-maturita.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nette-maturita.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/127_0_0_1.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/AdminModule/Presenters/DashboardPresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Presenters/DashboardPresenter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AdminModule/Presenters/BasePresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Presenters/BasePresenter.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/AdminModule/Presenters/HousePresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Presenters/HousePresenter.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/AdminModule/Presenters/ReservationPresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Presenters/ReservationPresenter.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/AdminModule/Presenters/UserPresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Presenters/UserPresenter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AdminModule/Templates/@layout.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Templates/@layout.latte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AdminModule/Templates/House/default.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Templates/House/default.latte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AdminModule/Templates/House/show.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Templates/House/show.latte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AdminModule/Templates/Reservation/default.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Templates/Reservation/default.latte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AdminModule/Templates/Reservation/show.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Templates/Reservation/show.latte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AdminModule/Templates/User/show.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Templates/User/show.latte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AdminModule/Templates/nav.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/AdminModule/Templates/nav.latte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/HouseManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/HouseManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/ReservationManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/ReservationManager.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Presenters/BasePresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/BasePresenter.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Presenters/HomepagePresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/HomepagePresenter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Presenters/HousePresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/HousePresenter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Presenters/ProfilePresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/ProfilePresenter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Presenters/ReservationPresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/ReservationPresenter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Presenters/SignPresenter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/SignPresenter.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Presenters/templates/@layout.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/@layout.latte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Presenters/templates/Homepage/default.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/Homepage/default.latte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Presenters/templates/House/default.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/House/default.latte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Presenters/templates/House/search.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/House/search.latte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Presenters/templates/Reservation/default.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/Reservation/default.latte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Presenters/templates/nav.latte" beforeDir="false" afterPath="$PROJECT_DIR$/app/Presenters/templates/nav.latte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dsa.mwb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/temp/cache/_Nette.Database.Structure.6ed486b77bb3706f10cf9f0cd7eaf357/_07414f4e15ca943e6cde032dec85d92f" beforeDir="false" afterPath="$PROJECT_DIR$/temp/cache/_Nette.Database.Structure.6ed486b77bb3706f10cf9f0cd7eaf357/_07414f4e15ca943e6cde032dec85d92f" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/autoload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/LICENSE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/res/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/www/res/css/bootstrap.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/res/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/www/res/css/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +63,7 @@
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="false" />
     <option name="GROUP_SCHEMA" value="true" />
     <option name="GROUP_CONTENTS" value="false" />
     <option name="SORT_POSITIONED" value="false" />
@@ -50,7 +72,17 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="kratos@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="kratos@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="Git.Settings">
@@ -89,6 +121,11 @@
       <path value="$PROJECT_DIR$/vendor/tomaj/nette-bootstrap-form" />
       <path value="$PROJECT_DIR$/vendor/aleswita/formrenderer" />
       <path value="$PROJECT_DIR$/vendor/nittro/nette-bridges" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/vendor/setasign/fpdi" />
+      <path value="$PROJECT_DIR$/vendor/mpdf/mpdf" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
     </include_path>
   </component>
   <component name="ProjectId" id="1WJHenfE09kS2mK2b94ZfaUNslc" />
@@ -111,7 +148,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="database.console.LAST_STATE" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/AdminModule/Templates/User" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../nette-Test" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -121,14 +158,14 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\wamp64\www\nette-maturita\app\AdminModule\Templates\User" />
-      <recent name="D:\wamp64\www\nette-maturita\app\AdminModule\Presenters" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\wamp64\www\nette-maturita\www\res\css" />
       <recent name="D:\wamp64\www\nette-maturita\app\AdminModule\Templates" />
       <recent name="D:\wamp64\www\nette-maturita\app\Model" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\wamp64\www\nette-maturita\app\AdminModule\Templates\User" />
+      <recent name="D:\wamp64\www\nette-maturita\app\AdminModule\Presenters" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -174,6 +211,13 @@
       <workItem from="1579613037291" duration="181000" />
       <workItem from="1580122032611" duration="596000" />
       <workItem from="1580122797883" duration="12726000" />
+      <workItem from="1580216339219" duration="812000" />
+      <workItem from="1580229285592" duration="3228000" />
+      <workItem from="1580243854593" duration="1512000" />
+      <workItem from="1580251858338" duration="4113000" />
+      <workItem from="1580255984253" duration="1637000" />
+      <workItem from="1580258644602" duration="9200000" />
+      <workItem from="1580289504161" duration="5012000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1575989885999</created>
@@ -284,19 +328,24 @@
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="499" y="168" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1580126100337">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="624" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1580267343427">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="499" y="168" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580126100337" />
+    <state x="624" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580267343427" />
     <state x="466" y="11" key="CommitChangelistDialog2" timestamp="1580140339127">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="466" y="11" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580140339127" />
     <state x="583" y="28" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1578861948733" />
-    <state x="740" y="262" key="FileChooserDialogImpl" timestamp="1578861249780">
+    <state x="740" y="262" key="FileChooserDialogImpl" timestamp="1580161348841">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1578861249780" />
+    <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580161348841" />
+    <state width="196" height="539" key="HiddenNamespacesPopup" timestamp="1580165039868">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="196" height="539" key="HiddenNamespacesPopup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580165039868" />
     <state x="594" y="253" key="NewPhpClassDialog" timestamp="1580123036018">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -306,9 +355,17 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="163" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1578861252617" />
+    <state x="646" y="94" width="627" height="852" key="find.popup" timestamp="1580170305356">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="646" y="94" width="627" height="852" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580170305356" />
     <state x="687" y="294" key="git4idea.merge.GitPullDialog" timestamp="1578861334470">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="687" y="294" key="git4idea.merge.GitPullDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1578861334470" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1580259955887">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580259955887" />
   </component>
 </project>
