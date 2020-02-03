@@ -51,4 +51,14 @@ class HouseManager
     {
         return $this->database->table('house')->select('house.*')->where('city LIKE "' . $data . '%"')->select(':image.name AS "image"')->where(':image.isDefault=1')->limit($limit, $offset);
     }
+
+    public function countHouses($data)
+    {
+        return $this->database->table('house')->select('house.*')->where('city LIKE "' . $data . '%"');
+    }
+
+    public function getComments($houseId)
+    {
+        return $this->database->table('comment')->select('comment.*,user.firstname,user.lastname')->joinWhere('user', 'user.id = comment.user_id')->where('house_id = ?', $houseId);
+    }
 }

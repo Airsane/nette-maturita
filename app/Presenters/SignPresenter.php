@@ -10,6 +10,8 @@ namespace App\Presenters;
 
 use Nette;
 use Nette\Application\UI\Form;
+use Nette\Mail\Message;
+use Nette\Mail\SendmailMailer;
 use Tomaj\Form\Renderer\BootstrapVerticalRenderer;
 
 
@@ -21,7 +23,33 @@ class SignPresenter extends BasePresenter
         $this->getUser()->logout();
         $this->flashMessage('Odhlášení bylo úspěšné!', 'success');
         $this->redirect('Homepage:');
+    }
 
+    public function actionConfirm($user, $code)
+    {
+        if (!isset($user) || !isset($code)) {
+            $this->flashMessage('Neplatný odkaz!', 'danger');
+            $this->redirect('Homepage:default');
+        }
+
+        $userD = $this->database->table('user')->get($user);
+        if ($userD) {
+            if ($userD->active == 1) {
+                $this->flashMessage('Účet je již aktivován!', 'danger');
+                $this->redirect('Homepage:default');
+            }
+            if ($userD->code == $code) {
+                $userD->update(['active' => 1]);
+                $this->flashMessage('Email ověřen, učet je aktivován!', 'success');
+                $this->redirect('Homepage:default');
+            } else {
+                $this->flashMessage('Neplatný kód!', 'danger');
+                $this->redirect('Homepage:default');
+            }
+        } else {
+            $this->flashMessage('Uživatel nenalezen!', 'danger');
+            $this->redirect('Homepage:default');
+        }
     }
 
     public function registerFormSucceeded(Form $form, \stdClass $values)
@@ -34,9 +62,17 @@ class SignPresenter extends BasePresenter
         try {
             $this->database->beginTransaction();
             try {
-                $row = $this->database->table('user')->insert(array('firstname' => $values->firstname, 'lastname' => $values->lastname, 'password' => (new \Nette\Security\Passwords)->hash($values->password), 'email' => $values->email, 'phone' => $values->phone));
+                $code = substr(md5(uniqid(strval(mt_rand()))), 0, 8);
+                $row = $this->database->table('user')->insert(array('firstname' => $values->firstname, 'lastname' => $values->lastname, 'password' => (new \Nette\Security\Passwords)->hash($values->password), 'email' => $values->email, 'phone' => $values->phone, 'code' => $code));
                 $this->database->commit();
-                $this->flashMessage("Účet byl vytvořen!", "success");
+                $mail = new Message;
+                $mail->setFrom('Kratos <info@kabelepa.spse-net.cz>')
+                    ->addTo($values->email)
+                    ->setSubject('Ověření emailu')
+                    ->setBody("Dobrý den,\nprosím ověřte svůj email tímto odkazem https://kabelepa.mp.spse-net.cz/www/sign/confirm?user=" . $row->id . "&code=" . $code . "");
+                $mailer = new SendmailMailer;
+                $mailer->send($mail);
+                $this->flashMessage("Účet byl vytvořen! Ověřovací email byl odeslán!", "success");
                 $this->redirect('Homepage:');
             } catch (PDOException $e) {
                 $this->database->rollBack();

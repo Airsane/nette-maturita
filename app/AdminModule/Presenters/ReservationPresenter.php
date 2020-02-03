@@ -43,13 +43,23 @@ final class ReservationPresenter extends BasePresenter
     {
         $this->database->table('reservation')->get($this->getParameter('id'))->update(['start' => $values->from, 'end' => $values->to]);
         $this->flashMessage('Datum rezervace změněno!', 'success');
-
     }
 
-    public function renderDefault()
+    public function handleDeleteReservation($id)
     {
-        $this->template->reservationCount = $this->reservationManager->getReservationCount();
-        $this->template->reservations = $this->reservationManager->getReservations(0, 10);
+        $this->database->table('reservation')->get($id)->delete();
+    }
+
+    public function renderDefault($page = 1)
+    {
+        $paginator = new Nette\Utils\Paginator;
+        $paginator->setItemsPerPage(20);
+        $paginator->setPage($page);
+        $reservationCount = $this->reservationManager->getReservationCount();
+        $paginator->setItemCount($reservationCount);
+        $this->template->reservationCount = $reservationCount;
+        $this->template->reservations = $this->reservationManager->getReservations($paginator->getOffset(), $paginator->getLength());
+        $this->template->paginator = $paginator;
     }
 
     public function bedsFormSucceded(Form $form, \stdClass $values)

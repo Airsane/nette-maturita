@@ -1,10 +1,9 @@
 {block content}
-    <div class="search-bar mx-sm-auto mb-4">
+    <div class="search-bar mx-sm-auto">
         <form data-ajax="true" n:name="searchForm" class="">
-            <div class="form-inline p-md-4 p-sm-0"><input n:name="search" class="form-control mr-sm-2" type="text"
-                                                                          placeholder="Např. Pardubice">
-                <input class="form-control mr-sm-2" type="date" value="{date('Y-m-d')}" name="">
-                <input class="form-control mr-sm-2" type="date" value="{date('Y-m-d', strtotime("tomorrow"))}" name="">
+            <div class="form-inline p-md-4 p-sm-0"><input style="width: 90%" n:name="search"
+                                                          class="form-control mr-sm-2" type="text"
+                                                          placeholder="Např. Pardubice">
                 <button n:name="send" class="form-control mr-sm-2"><i class="fa fa-fw fa-search"></i></button>
             </div>
 
@@ -71,19 +70,57 @@
                                     </header>
                                     <div class="card-body row">
                                         <div class="col-md-3">
-                                            <div class="photoOverlay"><span><i
+                                            <div class="photoOverlay"><span style="right: 0"><i
                                                             class="fas fa-bed"></i> {$house->beds} </span><img
                                                         src="{$basePath}/res/img/house/thumb/{$house->image}"
                                                         class="card-img-top" alt="..."></div>
                                         </div>
                                         <div class="col-md-9"><p>{$house->description|stripTags|truncate:1000}</p>
-                                            <h3>Cena: {$house->price|number:0,',':'&nbsp'|noescape} Kč</h3></div>
+                                            <h3>Cena: {$house->price|number:0,',':'&nbsp'|noescape} Kč <small>za
+                                                    noc</small></h3>
+                                            <h6 class="card-subtitle mb-2 text-muted"><em
+                                                        class="fas fa-map-pin"></em> {$house->street}
+                                                - {$house->city}</h6></div>
                                     </div>
                                 </a>
                             </article>
                         {/foreach}
                     </div>
                 {/snippet}
+            </div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <div class="paginator mt-2 m-auto">
+                    <nav aria-label="...">
+                        <ul class="pagination justify-content-center">
+                            <li n:class="$paginator->isFirst() ? 'disabled page-item': 'page-item'">
+                                <a class="page-link" n:href="search, 1" tabindex="-1">First</a>
+                            </li>
+                            <li n:if="$paginator->isLast() && !$paginator->isFirst() && $paginator->pageCount > 2"
+                                    class="page-item"><a
+                                        class="page-link" n:href="search, $paginator->page-2">{$paginator->page-2}</a>
+                            </li>
+                            <li n:if="!$paginator->isFirst()" class="page-item"><a
+                                        class="page-link" n:href="search, $paginator->page-1">{$paginator->page-1}</a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" n:href="search, $paginator->page">{$paginator->page} <span
+                                            class="sr-only">(current)</span></a>
+                            </li>
+                            <li n:if="!$paginator->isLast()" class="page-item"><a
+                                        class="page-link" n:href="search, $paginator->page+1">{$paginator->page+1}</a>
+                            </li>
+                            <li n:if="$paginator->isFirst() && !$paginator->isLast() && $paginator->pageCount > 2"
+                                    class="page-item"><a
+                                        class="page-link" n:href="search, $paginator->page+2">{$paginator->page+2}</a>
+                            </li>
+
+                            <li n:class="$paginator->isLast() ? 'disabled page-item': 'page-item'">
+                                <a class="page-link" n:href="search, $paginator->pageCount">Last</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>

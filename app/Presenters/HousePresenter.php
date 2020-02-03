@@ -7,6 +7,8 @@ namespace App\Presenters;
 
 use Nette;
 use Nette\Application\UI\Form;
+use Nette\Mail\Message;
+use Nette\Mail\SendmailMailer;
 use Tomaj\Form\Renderer\BootstrapVerticalRenderer;
 
 final class HousePresenter extends BasePresenter
@@ -14,14 +16,28 @@ final class HousePresenter extends BasePresenter
     /** @persistent */
     public $filter = [];
 
+    /** @persistent */
+    public $data;
+    /** @persistent */
+    public $page = 1;
 
-    public function renderSearch(string $data = "")
+    /** @persistent */
+
+
+    public function renderSearch(int $page = 1, string $data = "")
     {
+        $paginator = new Nette\Utils\Paginator;
+        $paginator->setItemsPerPage(10);
+        $paginator->setPage($page);
         $this['filterForm']->setDefaults($this->filter);
         if (!isset($this->template->houses)) {
-            $houses = $this->houseManager->findHouses($data, 0, 10);
-            $this->template->houses = $this->applyFilters($houses, $this->filter);
+            $houses = $this->houseManager->findHouses($data, $paginator->getOffset(), $paginator->getLength());
+            $houses = $this->applyFilters($houses, $this->filter);
+            $housesCount = $this->applyFilters($this->houseManager->countHouses($data), $this->filter);
+            $this->template->houses = $houses;
+            $paginator->setItemCount($housesCount->count());
         }
+        $this->template->paginator = $paginator;
     }
 
     public function applyFilters($zaznam, $filtry)
@@ -53,6 +69,29 @@ final class HousePresenter extends BasePresenter
         $this->template->photos = $this->houseManager->getHousePhotos($houseId);
         $this->template->houses = $this->houseManager->getRandomHouses();
         $this->template->dates = $this->reservationManager->getReservationDates($houseId);
+        $this->template->comments = $this->houseManager->getComments($houseId);
+        $this->template->rating = $this->database->table('star')->select('SUM(rate)/Count(*)/5*100 AS rate')->where('house_id = ?', $houseId)->fetch();
+        if ($this->user->isLoggedIn()) {
+            $this->template->ratingUser = $this->database->table('star')->where('user_id = ? AND house_id = ?', $this->user->getId(), $houseId)->fetch();
+        }
+    }
+
+    public function handleRatingChange($house_id, $rating)
+    {
+        if ($this->user->isLoggedIn()) {
+            if ($rating < 1 || $rating > 5) {
+                $this->flashMessage('Chyba neplatná hodnota!', 'danger');
+                $this->redirect('this');
+                exit;
+            }
+            $rate = $this->database->table('star')->where('user_id = ? AND house_id = ? ', $this->user->getId(), $house_id);
+            if ($rate->count() > 0) {
+                $rate->update(['rate' => $rating]);
+                $this->redirect('this');
+            }
+            $this->database->table('star')->insert(['house_id' => $house_id, 'user_id' => $this->user->getId(), 'rate' => $rating]);
+            $this->redirect('this');
+        }
     }
 
     public function reservationFormSucceeded(Form $form, \stdClass $values)
@@ -64,7 +103,7 @@ final class HousePresenter extends BasePresenter
         }
 
         $houseId = $this->getParameter('houseId');
-        $reservation = $this->database->table('reservation')->where('start BETWEEN ? AND ? AND end BETWEEN ? AND ? ', $values->from, $values->to, $values->from, $values->to)->where('house_id = ? AND NOT status_id = 4', $this->getParameter('houseId'))->fetchAll();
+        $reservation = $this->database->table('reservation')->where('start BETWEEN ? AND ? AND end BETWEEN ? AND ? ', date('Y/m/d', strtotime($values->from)), date('Y/m/d', strtotime($values->to)), date('Y/m/d', strtotime($values->from)), date('Y/m/d', strtotime($values->to . ' + 1 days')))->where('house_id = ? AND NOT status_id = 4', $this->getParameter('houseId'))->fetchAll();
         if (count($reservation) > 0) {
             $this->flashMessage('Na tento termín není rezervace možná!', 'danger');
             $this->redirect('this');
@@ -82,9 +121,17 @@ final class HousePresenter extends BasePresenter
 
         $this->database->beginTransaction();
         try {
-            $test = substr(md5(uniqid(strval(mt_rand()))), 0, 8);
-            $this->database->table('reservation')->insert(['user_id' => $this->getUser()->getId(), 'house_id' => $houseId, 'beds' => $values->beds, 'start' => $values->from, 'end' => $values->to, 'code' => $test]);
+            $code = substr(md5(uniqid(strval(mt_rand()))), 0, 8);
+            $res = $this->database->table('reservation')->insert(['user_id' => $this->getUser()->getId(), 'house_id' => $houseId, 'beds' => $values->beds, 'start' => $values->from, 'end' => $values->to, 'code' => $code]);
             $this->database->commit();
+            $mail = new Message;
+            $email = $this->database->table('user')->get($this->getUser()->getId())->email;
+            $mail->setFrom('Kratos <info@kabelepa.spse-net.cz>')
+                ->addTo($email)
+                ->setSubject('Potvrzení rezervace')
+                ->setBody("Dobrý den,\nprosím potvrďte rezervaci tímto odkazem https://kabelepa.mp.spse-net.cz/www/reservation/confirm?resId=" . $res->id . "&code=" . $code . "");
+            $mailer = new SendmailMailer;
+            $mailer->send($mail);
             $this->flashMessage('Rezervace úspešně vytvořena!', 'success');
         } catch (PDOException $e) {
             $this->database->rollBack();
@@ -107,6 +154,18 @@ final class HousePresenter extends BasePresenter
         }
     }
 
+    public function reviewFormSucceded(Form $form, \stdClass $values)
+    {
+        if (!$this->user->isLoggedIn()) {
+            $this->flashMessage("Chyba nepatříš sem!", 'danger');
+            $this->redirect('Homepage:default');
+            exit;
+        }
+
+        $this->database->table('comment')->insert(['house_id' => $values->house_id, 'user_id' => $this->getUser()->getId(), 'text' => $values->text]);
+        $this->flashMessage('Hodnocení přidáno!', 'success');
+        $this->redirect('this');
+    }
 
     protected function createComponentFilterForm()
     {
@@ -132,6 +191,18 @@ final class HousePresenter extends BasePresenter
         $form->addText('cena', 'Cena')->setDisabled(true)->setHtmlId('priceCalc')->setDefaultValue(number_format($house->price, 0, ',', ' ') . ' Kč');
         $form->addSubmit('send', 'Rezervovat');
         $form->onSuccess[] = [$this, 'reservationFormSucceeded'];
+        return $form;
+    }
+
+    protected function createComponentReviewForm()
+    {
+        $form = new Nette\Application\UI\Form;
+        $form->setRenderer(new BootstrapVerticalRenderer);
+        $reservation = $this->reservationManager->getReservation($this->getParameter('id'));
+        $form->addTextArea('text', 'Komentář:')->addRule(Form::MAX_LENGTH, 'Maximální počet znaků je %d', 250);
+        $form->addHidden('house_id', $this->getParameter('houseId'));
+        $form->addSubmit('send', 'Přidat hodnocení');
+        $form->onSuccess[] = [$this, 'reviewFormSucceded'];
         return $form;
     }
 

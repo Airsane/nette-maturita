@@ -31,47 +31,63 @@
                 <div class="col-md-4"><h1>{$house->name}</h1><h6 class="card-subtitle mb-2 text-muted"><em
                                 class="fas fa-map-pin"></em> {$house->street}
                         - {$house->city}, Česká republika</h6>
-                    <div class="raiting mb-2"><span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
+                    <div class="mt-2 mb-2 row">
+                        <div class="col-6">
+                            <div class="result-container">
+                                <div class="rate-bg" style="width:{$rating->rate}%"></div>
+                                <div class="rate-stars"></div>
+                            </div>
+                        </div>
+                        <div class="col-6"><b>Počet postelí:</b> {$house->beds}</div>
                     </div>
-                    <div class="bg-light p-3 mb-2">od <b
+                    <div class="bg-light p-3 mb-2"><b
                                 style="font-size: 30px;">{$house->price|number:0,',':'&nbsp'|noescape} Kč</b> za noc
                     </div>
                     {if $user->isLoggedIn()}
                         <button data-toggle="modal" data-target="#reservationModal" class="btn btn-primary">Rezervovat
                         </button>{/if}
                     <div class="mt-2">{$house->description|stripTags|truncate:500}</div>
+                    {if $user->isLoggedIn()}
+                        <h2>Hodnocení:</h2>
+                        <div class="rate mt-2">
+                            <div id="1" class="btn-1 rate-btn"></div>
+                            <div id="2" class="btn-2 rate-btn"></div>
+                            <div id="3" class="btn-3 rate-btn"></div>
+                            <div id="4" class="btn-4 rate-btn"></div>
+                            <div id="5" class="btn-5 rate-btn"></div>
+                        </div>
+
+                    {/if}
+
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-7">{$house->description|noescape}
-            </div>
-            <div class="col-md-5">
-                <h3 class="card-header" id="monthAndYear"></h3>
-                <table class="table table-bordered table-responsive-sm text-center" id="calendar">
-                    <thead>
-                    <tr>
-                        <th>Po</th>
-                        <th>Út</th>
-                        <th>St</th>
-                        <th>Čt</th>
-                        <th>Pá</th>
-                        <th>So</th>
-                        <th>Ne</th>
-                    </tr>
-                    </thead>
-                    <tbody id="calendar-body">
-                    </tbody>
-                </table>
-                <div class="form-inline">
-                    <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Předchozí
-                    </button>
+            <hr>
+            <div class="row">
+                <div class="col-md-7">{$house->description|noescape}
+                </div>
+                <div class="col-md-5">
+                    <h3 class="card-header" id="monthAndYear"></h3>
+                    <table class="table table-bordered table-responsive-sm text-center" id="calendar">
+                        <thead>
+                        <tr>
+                            <th>Po</th>
+                            <th>Út</th>
+                            <th>St</th>
+                            <th>Čt</th>
+                            <th>Pá</th>
+                            <th>So</th>
+                            <th>Ne</th>
+                        </tr>
+                        </thead>
+                        <tbody id="calendar-body">
+                        </tbody>
+                    </table>
+                    <div class="form-inline">
+                        <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Předchozí
+                        </button>
 
-                    <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Další</button>
+                        <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Další</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,20 +96,38 @@
                 {foreach $houses as $housed}
                     <div class="col-md-4 mb-4">
                         <div class="card">
-                            <img src="{$basePath}/res/img/house/thumb/{$housed->image}" class="card-img-top" alt="...">
+                            <div class="photoOverlay"><span style="right: 0"><i class="fas fa-bed"></i> {$housed->beds} </span>
+                                <span style="left: 0">{$housed->price|number:0,',':'&nbsp'|noescape} Kč </span><img
+                                        src="{$basePath}/res/img/house/thumb/{$housed->image}" class="card-img-top"
+                                        alt="..."></div>
                             <div class="card-body">
                                 <h5 class="card-title">{$housed->name}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted"><em
                                             class="fas fa-map-pin"></em> {$housed->street}
-                                    - {$house->city}</h6>
+                                    - {$housed->city}</h6>
                                 <div class="card-text">{$housed->description|stripTags|truncate:250} </div>
-                                <a data-ajax="false" n:href="House:default $housed->id" class="btn btn-primary">Více
+                                <a data-ajax="false" n:href="House:default $house->id" class="btn btn-primary">Více
                                     informací</a>
                             </div>
                         </div>
                     </div>
                 {/foreach}
             </div>
+        </div>
+        <div class="mt-3">
+            <h1 class="text-center">Komentáře</h1>
+            {foreach $comments as $comment}
+                <div class="card mb-2">
+                    <div class="card-header"><h3
+                                class="float-left">{$comment->firstname} {$comment->lastname|substr:0,1}.</h3>
+                        <h3 class="float-right">{$comment->created|date:'%d.%m.%Y'}</h3></div>
+                    <div class="card-body">{$comment->text}</div>
+                </div>
+                {dump $comment}
+            {/foreach}
+        </div>
+        <div class="mt-3">
+            {control reviewForm}
         </div>
     </div>
 
@@ -109,7 +143,6 @@
                 </div>
                 <div class="modal-body">
                     {control reservationForm}
-                    <h3>Cena: </h3>
                 </div>
 
             </div>
@@ -194,9 +227,13 @@
                         let cellText = document.createTextNode(date);
                         for (let i = 0; i < dates.length; i++) {
                             let t1 = new Date(dates[i].start);
+                            t1.setHours(0, 0, 0, 0);
                             let t2 = new Date(dates[i].end);
                             let d = month >= 9 ? (month + 1) : '0' + (month + 1);
                             let t3 = new Date(year + '-' + d + '-' + date);
+                            console.log('');
+                            console.log('T3 ' + t3);
+                            console.log('T1 ' + t1);
                             if (t3 >= t1 && t3 <= t2) {
                                 cell.classList.add("bg-danger");
                             }
@@ -214,6 +251,87 @@
             }
         }
 
+        {if $user->isLoggedIn()}
+        $(function () {
+            $('.rate-btn').hover(function () {
+                $('.rate-btn').removeClass('rate-btn-hover');
+                let therate = $(this).attr('id');
+                for (let i = therate; i >= 0; i--) {
+                    $('.btn-' + i).addClass('rate-btn-hover');
+                }
+                ;
+            });
+
+            $('.rate-btn').click(function () {
+                let therate = $(this).attr('id');
+                let dataRate = {"house_id":{$house->id}, "rating": therate};
+                $('.rate-btn').removeClass('rate-btn-active');
+                for (let i = therate; i >= 0; i--) {
+                    $('.btn-' + i).addClass('rate-btn-active');
+                }
+                ;
+                $.ajax({
+                    type: "POST",
+                    url: {link ratingChange!},
+                    data: dataRate,
+                    success: function () {
+                    }
+                });
+            });
+        });
+
+        {if isset($ratingUser)}
+        for (let i = {$ratingUser->rate}; i >= 0; i--) {
+            $('.btn-' + i).addClass('rate-btn-active');
+        }
+        {/if}
+        {/if}
 
     </script>
+
+    <style>
+        .rate {
+            width: 227px;
+            height: 40px;
+            border: #e9e9e9 1px solid;
+            background-color: #f6f6f6;
+            margin: auto;
+            margin-bottom: 0px;
+        }
+
+        .rate .rate-btn {
+            width: 45px;
+            height: 40px;
+            float: left;
+            background: url({$basePath}/res/img/rate-btn.png) no-repeat;
+            cursor: pointer;
+        }
+
+        .rate .rate-btn:hover, .rate .rate-btn-hover, .rate .rate-btn-active {
+            background: url({$basePath}/res/img/rate-btn-hover.png) no-repeat;
+        }
+
+        .result-container {
+            width: 82px;
+            height: 18px;
+            position: relative;
+            background-color: #ccc;
+            border: #ccc 1px solid;
+        }
+
+        .rate-stars {
+            width: 82px;
+            height: 18px;
+            background: url({$basePath}/res/img/rate-stars.png) no-repeat;
+            position: absolute;
+        }
+
+        .rate-bg {
+            height: 18px;
+            background-color: #ffbe10;
+            position: absolute;
+        }
+
+
+    </style>
 {/block}

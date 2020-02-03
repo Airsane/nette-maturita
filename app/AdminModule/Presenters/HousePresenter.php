@@ -24,10 +24,16 @@ final class HousePresenter extends BasePresenter
         $this->reservationModule = new ReservationManager($database);
     }
 
-    public function renderDefault()
+    public function renderDefault($page = 1)
     {
-        $this->template->houseCount = $this->houseManager->getHouseCount();
-        $this->template->houses = $this->houseManager->getHouses(0, 10);
+        $paginator = new Nette\Utils\Paginator;
+        $paginator->setItemsPerPage(20);
+        $paginator->setPage($page);
+        $houseCount = $this->houseManager->getHouseCount();
+        $paginator->setItemCount($houseCount);
+        $this->template->houseCount = $houseCount;
+        $this->template->houses = $this->houseManager->getHouses($paginator->getOffset(), $paginator->getLength());
+        $this->template->paginator = $paginator;
     }
 
     public function renderShow(int $id): void
@@ -89,6 +95,29 @@ final class HousePresenter extends BasePresenter
         }
     }
 
+    public function savePhotos($images, $idd)
+    {
+        foreach ($images as $key => $file) {
+            if ($file->isImage() and $file->isOk()) {
+                $id = uniqid();
+                $file_ext = pathinfo($file->getSanitizedName(), PATHINFO_EXTENSION);
+                $file_name = $id . '.png';
+                if ($file_ext != '.png') {
+                    imagepng(imagecreatefromstring(file_get_contents($_FILES["photos"]["tmp_name"][$key])), 'res/img/house/' . $file_name);
+                    $this->database->query('INSERT INTO image (house_id,name,isDefault) VALUES (?,?,?)', $idd, $file_name, $key == 0 ? 1 : 0);
+                } else {
+                    $file->move('res/img/house/' . $file_name);
+                    $this->database->query('INSERT INTO image (house_id,name,isDefault) VALUES (?,?,?)', $idd, $file_name, $key == 0 ? 1 : 0);
+                }
+                $image = Image::fromFile('res/img/house/' . $file_name);
+                $image->resize(750, 450, Image::EXACT);
+                $image->save('res/img/house/' . $file_name, 100, Image::PNG);
+                $image->resize(300, 250, Image::EXACT);
+                $image->save('res/img/house/thumb/' . $file_name, 100, Image::PNG);
+            }
+        }
+    }
+
     public function createComponentEditForm()
     {
         $form = new Nette\Application\UI\Form;
@@ -127,29 +156,6 @@ final class HousePresenter extends BasePresenter
             $this->flashMessage('Chyba!');
         }
         $this->redirect('default');
-    }
-
-    public function savePhotos($images, $idd)
-    {
-        foreach ($images as $key => $file) {
-            if ($file->isImage() and $file->isOk()) {
-                $id = uniqid();
-                $file_ext = strtolower(mb_substr($file->getSanitizedName(), strrpos($file->getSanitizedName(), ".")));
-                $file_name = $id . '.png';
-                if ($file_ext != '.png') {
-                    imagepng(imagecreatefromstring(file_get_contents($_FILES["photos"]["tmp_name"][$key])), 'res/img/house/' . $file_name);
-                    $this->database->query('INSERT INTO image (house_id,name,isDefault) VALUES (?,?,?)', $idd, $file_name, $key == 0 ? 1 : 0);
-                } else {
-                    $file->move('res/img/house/' . $file_name);
-                    $this->database->query('INSERT INTO image (house_id,name,isDefault) VALUES (?,?,?)', $idd, $file_name, $key == 0 ? 1 : 0);
-                }
-                $image = Image::fromFile('res/img/house/' . $file_name);
-                $image->resize(750, 450, Image::EXACT);
-                $image->save('res/img/house/' . $file_name, 100, Image::PNG);
-                $image->resize(300, 250, Image::EXACT);
-                $image->save('res/img/house/thumb/' . $file_name, 100, Image::PNG);
-            }
-        }
     }
 
     protected function createComponentAddForm()

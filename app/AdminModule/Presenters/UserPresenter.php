@@ -20,9 +20,10 @@ class UserPresenter extends BasePresenter
         $this->reservationManager = new ReservationManager($this->database);
     }
 
-    public function handleDelete(int $userId)
+    public function handleDeleteUser(int $userId)
     {
-        //TODO: Odebrání uživatele
+        $this->database->table('reservation')->where('user_id = ?', $userId)->delete();
+        $this->database->table('user')->get($userId)->delete();
     }
 
     public function handleSetAdmin(int $userId)
@@ -43,10 +44,16 @@ class UserPresenter extends BasePresenter
         $this->template->avgBeds = $this->reservationManager->getUserAverageBeds($id);
     }
 
-    public function renderDefault()
+    public function renderDefault($page = 1)
     {
-        $this->template->userCount = $this->userManager->getUserCount();
-        $this->template->users = $this->userManager->getUsers($this->getUser()->getId(), 0, 10);
+        $paginator = new Nette\Utils\Paginator;
+        $paginator->setItemsPerPage(20);
+        $paginator->setPage($page);
+        $userCount = $this->userManager->getUserCount();
+        $paginator->setItemCount($userCount);
+        $this->template->userCount = $userCount;
+        $this->template->users = $this->userManager->getUsers($this->getUser()->getId(), $paginator->getOffset(), $paginator->getLength());
+        $this->template->paginator = $paginator;
     }
 
 }

@@ -49,6 +49,33 @@
                 </div>
             </div>
         </div>
+        <div class="paginator mt-2 m-auto">
+            <nav aria-label="...">
+                <ul class="pagination justify-content-center">
+                    <li n:class="$paginator->isFirst() ? 'disabled page-item': 'page-item'">
+                        <a class="page-link" n:href="default, 1" tabindex="-1">First</a>
+                    </li>
+                    <li n:if="$paginator->isLast() && !$paginator->isFirst() && $paginator->pageCount > 2"
+                            class="page-item"><a
+                                class="page-link" n:href="default, $paginator->page-2">{$paginator->page-2}</a></li>
+                    <li n:if="!$paginator->isFirst()" class="page-item"><a
+                                class="page-link" n:href="default, $paginator->page-1">{$paginator->page-1}</a></li>
+                    <li class="page-item active">
+                        <a class="page-link" n:href="default, $paginator->page">{$paginator->page} <span
+                                    class="sr-only">(current)</span></a>
+                    </li>
+                    <li n:if="!$paginator->isLast()" class="page-item"><a
+                                class="page-link" n:href="default, $paginator->page+1">{$paginator->page+1}</a></li>
+                    <li n:if="$paginator->isFirst() && !$paginator->isLast() && $paginator->pageCount > 2"
+                            class="page-item"><a
+                                class="page-link" n:href="default, $paginator->page+2">{$paginator->page+2}</a></li>
+
+                    <li n:class="$paginator->isLast() ? 'disabled page-item': 'page-item'">
+                        <a class="page-link" n:href="default, $paginator->pageCount">Last</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
 

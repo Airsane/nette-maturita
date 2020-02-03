@@ -5,7 +5,6 @@
 .photoOverlay span {
     position: absolute;
     bottom: 0;
-    right: 0;
     font-size: 20px;
     color: white;
     background-color: rgba(62, 63, 58, 0.8);
